@@ -3,7 +3,7 @@
 
 {
     'name': 'Saml2 Authentication',
-    'version': '11.0.1.0.2',
+    'version': '10.0.1.0.0',
     'category': 'Tools',
     'author': 'XCG Consulting, Odoo Community Association (OCA)',
     'maintainer': 'XCG Consulting',
