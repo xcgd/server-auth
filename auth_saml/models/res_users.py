@@ -245,7 +245,7 @@ class ResUser(models.Model):
     @api.model
     def _allow_saml_and_password(self):
 
-        return self.env['res.config.settings'].allow_saml_and_password()
+        return self.env['base.config.settings'].allow_saml_and_password()
 
     def _set_encrypted_password(self, encrypted):
         """Redefine auth_crypt method to block password change as it uses
