@@ -9,7 +9,7 @@
     'website': 'https://github.com/OCA/server-auth',
     'author': 'LasLabs, Odoo Community Association (OCA)',
     'license': 'LGPL-3',
-    'installable': True,
+    'installable': False,
     'auto_install': True,
     'depends': [
         'auth_totp',

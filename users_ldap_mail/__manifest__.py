@@ -12,5 +12,5 @@
     'data': [
         'views/res_company_ldap.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

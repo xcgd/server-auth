@@ -21,5 +21,5 @@
         'views/action.xml',
         'views/menu.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

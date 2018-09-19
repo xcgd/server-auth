@@ -8,7 +8,7 @@
     'website': 'https://github.com/OCA/server-auth',
     'author': 'Creu Blanca, Odoo Community Association (OCA)',
     'license': 'AGPL-3',
-    'installable': True,
+    'installable': False,
     'application': False,
     'summary': 'Allows to use LDAP over SSL authentication',
     'depends': [

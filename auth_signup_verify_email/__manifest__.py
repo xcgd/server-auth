@@ -22,5 +22,5 @@
     "data": [
         "views/signup.xml",
     ],
-    'installable': True,
+    'installable': False,
 }
