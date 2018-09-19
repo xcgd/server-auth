@@ -5,12 +5,17 @@ import json
 from distutils import util
 import logging
 import ipaddress
-from urllib.request import urlopen
 from odoo import api, fields, models
 
 GEOLOCALISATION_URL = u"http://ip-api.com/json/{}"
 
 _logger = logging.getLogger(__name__)
+
+# This import fails on a regular Odoo 10 install.
+try:
+    from urllib.request import urlopen
+except ImportError:
+    _logger.debug('auth_brute_force: Cannot import `urllib.request.urlopen`.')
 
 
 class ResAuthenticationAttempt(models.Model):
