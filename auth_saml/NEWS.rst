@@ -7,6 +7,16 @@ Changelog
 - Sign auth requests with SHA-256 instead of SHA-1. ``lasso >= 2.6.0`` is
   expected.
 
+__ 10.0.1.1.0::
+
+10.0.1.1.0
+----------
+
+- Add auto redirect on providers. Use disable_autoredirect as a parameter query
+  to disable autoredirect (for example https://example.com/web/login?disable_autoredirect)
+- changes in the form and list of providers
+- providers are sorted by sequence then name rather than by name.
+
 10.0.1.0.0
 ----------
 
