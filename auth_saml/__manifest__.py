@@ -3,7 +3,7 @@
 
 {
     'name': 'Saml2 Authentication',
-    'version': '10.0.1.0.0',
+    'version': '10.0.2.0.0',
     'category': 'Tools',
     'author': 'XCG Consulting, Odoo Community Association (OCA)',
     'maintainer': 'XCG Consulting',
@@ -25,6 +25,6 @@
     'installable': True,
     'auto_install': False,
     'external_dependencies': {
-        'python': ['lasso'],
+        'python': ['lasso'],  # >= 2.6.0
     },
 }
