@@ -1,14 +1,13 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
 # * auth_saml
-# Vincent Lhote-Hatakeyama <vincent.lhote@xcg-consulting.fr>, 2014.
-# Vincent Hatakeyama <vincent.hatakeyama@xcg-consulting.fr>, 2019.
+# Vincent Hatakeyama <vincent.hatakeyama@xcg-consulting.fr>, 2014, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-04 14:10+0000\n"
-"PO-Revision-Date: 2019-02-04 15:13+0200\n"
+"POT-Creation-Date: 2019-12-02 10:39+0000\n"
+"PO-Revision-Date: 2019-12-02 11:41+0200\n"
 "Last-Translator: Vincent Hatakeyama <vincent.hatakeyama@xcg-consulting.fr>\n"
 "Language-Team: XCG Consulting\n"
 "Language: fr\n"
@@ -19,7 +18,7 @@ msgstr ""
 "X-Generator: Virtaal 0.7.1\n"
 
 #. module: auth_saml
-#: code:addons/auth_saml/controllers/main.py:86
+#: code:addons/auth_saml/controllers/main.py:119
 #, python-format
 msgid "Access Denied"
 msgstr "Accès refusé"
@@ -186,7 +185,7 @@ msgid "Sequence"
 msgstr "Séquence"
 
 #. module: auth_saml
-#: code:addons/auth_saml/controllers/main.py:84
+#: code:addons/auth_saml/controllers/main.py:117
 #, python-format
 msgid "Sign up is not allowed on this database."
 msgstr "L’inscription n’est pas autorisée sur cette base de donnée."
@@ -197,13 +196,20 @@ msgid "The current SAML token in use"
 msgstr "Le jeton SAML courant en cours d’utilisation"
 
 #. module: auth_saml
-#: code:addons/auth_saml/models/res_users.py:47
-#: code:addons/auth_saml/models/res_users.py:250
+#: code:addons/auth_saml/models/res_users.py:251
 #, python-format
 msgid "This database disallows users to have both passwords and SAML IDs. Errors for login %s"
 msgstr ""
 "Cette base de données interdit d’avoir à la fois des mots de passe et des "
 "identifiants SMAL. Erreurs pour l’authentification %s"
+
+#. module: auth_saml
+#: code:addons/auth_saml/models/res_users.py:47
+#, python-format
+msgid "This database disallows users to have both passwords and SAML IDs. Errors for login {}"
+msgstr ""
+"Cette base de données interdit d’avoir à la fois des mots de passe et des "
+"identifiants SMAL. Erreurs pour l’authentification {}"
 
 #. module: auth_saml
 #: model:ir.model.fields,field_description:auth_saml.field_auth_saml_token_user_id
@@ -216,7 +222,7 @@ msgid "Users"
 msgstr "Utilisateurs"
 
 #. module: auth_saml
-#: code:addons/auth_saml/controllers/main.py:88
+#: code:addons/auth_saml/controllers/main.py:121
 #, python-format
 msgid "You do not have access to this database or your invitation has expired. Please ask for an invitation and be sure to follow the link in your invitation email."
 msgstr ""
