@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Virtaal 0.7.1\n"
 
 #. module: auth_saml
-#: code:addons/auth_saml/controllers/main.py:103
+#: code:addons/auth_saml/controllers/main.py:86
 #, python-format
 msgid "Access Denied"
 msgstr "Accès refusé"
@@ -186,7 +186,7 @@ msgid "Sequence"
 msgstr "Séquence"
 
 #. module: auth_saml
-#: code:addons/auth_saml/controllers/main.py:101
+#: code:addons/auth_saml/controllers/main.py:84
 #, python-format
 msgid "Sign up is not allowed on this database."
 msgstr "L’inscription n’est pas autorisée sur cette base de donnée."
@@ -216,7 +216,7 @@ msgid "Users"
 msgstr "Utilisateurs"
 
 #. module: auth_saml
-#: code:addons/auth_saml/controllers/main.py:105
+#: code:addons/auth_saml/controllers/main.py:88
 #, python-format
 msgid "You do not have access to this database or your invitation has expired. Please ask for an invitation and be sure to follow the link in your invitation email."
 msgstr ""
