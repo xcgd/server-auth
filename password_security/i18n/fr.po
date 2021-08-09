@@ -8,15 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-22 01:12+0000\n"
-"PO-Revision-Date: 2017-06-22 01:12+0000\n"
+"POT-Creation-Date: 2021-08-09 14:02+0000\n"
+"PO-Revision-Date: 2021-08-09 16:49+0200\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.3\n"
 
 #. module: password_security
 #: model:ir.model.fields,help:password_security.field_res_company__password_minimum
@@ -27,7 +28,7 @@ msgstr ""
 "nouveau son mot de passe"
 
 #. module: password_security
-#: code:addons/password_security/models/res_users.py:200
+#: code:addons/password_security/models/res_users.py:0
 #, python-format
 msgid "Cannot use the most recent %d passwords"
 msgstr "Interdire l'utilisation des %d mots de passe les plus récents"
@@ -182,12 +183,6 @@ msgid "Minimum number of uppercase characters"
 msgstr ""
 
 #. module: password_security
-#: code:addons/password_security/models/res_users.py:107
-#, python-format
-msgid "Must contain the following:"
-msgstr "Doit contenir :"
-
-#. module: password_security
 #: model:ir.model.fields,field_description:password_security.field_res_company__password_numeric
 #: model:ir.model.fields,field_description:password_security.field_res_config_settings__password_numeric
 msgid "Numeric"
@@ -209,7 +204,7 @@ msgid "Password expires in"
 msgstr ""
 
 #. module: password_security
-#: code:addons/password_security/models/res_users.py:177
+#: code:addons/password_security/models/res_users.py:0
 #, python-format
 msgid ""
 "Passwords can only be reset every %d hour(s). Please contact an "
@@ -221,28 +216,24 @@ msgstr ""
 #. module: password_security
 #: model:ir.model.fields,help:password_security.field_res_company__password_lower
 #: model:ir.model.fields,help:password_security.field_res_config_settings__password_lower
-#, fuzzy
 msgid "Require number of lowercase letters"
 msgstr "Doit contenir des caractères minuscules"
 
 #. module: password_security
 #: model:ir.model.fields,help:password_security.field_res_company__password_numeric
 #: model:ir.model.fields,help:password_security.field_res_config_settings__password_numeric
-#, fuzzy
 msgid "Require number of numeric digits"
 msgstr "Doit contenir des chiffres"
 
 #. module: password_security
 #: model:ir.model.fields,help:password_security.field_res_company__password_special
 #: model:ir.model.fields,help:password_security.field_res_config_settings__password_special
-#, fuzzy
 msgid "Require number of unique special characters"
 msgstr "Doit contenir des caractères spéciaux"
 
 #. module: password_security
 #: model:ir.model.fields,help:password_security.field_res_company__password_upper
 #: model:ir.model.fields,help:password_security.field_res_config_settings__password_upper
-#, fuzzy
 msgid "Require number of uppercase letters"
 msgstr "Doit contenir des lettres majuscules"
 
@@ -264,7 +255,7 @@ msgid "Special"
 msgstr "Des caractères spéciaux"
 
 #. module: password_security
-#: code:addons/password_security/models/res_company.py:62
+#: code:addons/password_security/models/res_company.py:0
 #, python-format
 msgid "The estimation must be between 0 and 4."
 msgstr ""
@@ -297,35 +288,35 @@ msgstr "Utilisateurs"
 
 #. module: password_security
 #. openerp-web
-#: code:addons/password_security/static/src/js/password_gauge.js:40
+#: code:addons/password_security/static/src/js/password_gauge.js:0
 #, python-format
 msgid "at least %d characters"
 msgstr ""
 
 #. module: password_security
 #. openerp-web
-#: code:addons/password_security/static/src/js/password_gauge.js:49
+#: code:addons/password_security/static/src/js/password_gauge.js:0
 #, python-format
 msgid "at least %d lower case characters"
 msgstr ""
 
 #. module: password_security
 #. openerp-web
-#: code:addons/password_security/static/src/js/password_gauge.js:67
+#: code:addons/password_security/static/src/js/password_gauge.js:0
 #, python-format
 msgid "at least %d numeric characters"
 msgstr ""
 
 #. module: password_security
 #. openerp-web
-#: code:addons/password_security/static/src/js/password_gauge.js:76
+#: code:addons/password_security/static/src/js/password_gauge.js:0
 #, python-format
 msgid "at least %d special characters"
 msgstr ""
 
 #. module: password_security
 #. openerp-web
-#: code:addons/password_security/static/src/js/password_gauge.js:58
+#: code:addons/password_security/static/src/js/password_gauge.js:0
 #, python-format
 msgid "at least %d upper case characters"
 msgstr ""
@@ -344,6 +335,59 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:password_security.res_config_settings_view_form
 msgid "previous passwords."
 msgstr ""
+
+#. module: password_security
+#: code:addons/password_security/models/res_users.py:0
+#, python-format
+msgid ""
+"{password_length, plural,=0{}=1{Password must be {password_length} character "
+"or more.\n"
+"}other{Password must be {password_length} characters or more.\n"
+"}}{password_content, plural,=0{}other{Must contain the following:"
+"{password_lower, plural,=0{}=1{\n"
+"- Lowercase letter (at least {password_lower} character)}other{\n"
+"- Lowercase letter (at least {password_lower} characters)}}{password_upper, "
+"plural,=0{}=1{\n"
+"- Uppercase letter (at least {password_upper} character)}other{\n"
+"- Uppercase letter (at least {password_upper} characters)}}"
+"{password_numeric, plural,=0{}=1{\n"
+"- Numeric digit (at least {password_numeric} character)}other{\n"
+"- Numeric digit (at least {password_numeric} characters)}}{password_special, "
+"plural,=0{}=1{\n"
+"- Special character  (at least {password_special} character)}other{\n"
+"- Special character  (at least {password_special} characters)}}}}"
+msgstr ""
+"{password_length, plural,=0{}=1{Le mot de passe doit comporter "
+"{password_length} caractère ou plus.\n"
+"}other{Le mot de passe doit comporter {password_length} caractères ou plus.\n"
+"}}{password_content, plural,=0{}other{Il doit contenir les éléments "
+"suivants :{password_lower, plural,=0{}=1{\n"
+"- Lettres minuscules (au moins {password_lower} caractère)}other{\n"
+"- Lettres minuscules (au moins {password_lower} caractères)}}"
+"{password_upper, plural,=0{}=1{\n"
+"- Lettres majuscules (au moins {password_upper} caractère)}other{\n"
+"- Lettres majuscules (au moins {password_upper} caractères)}}"
+"{password_numeric, plural,=0{}=1{\n"
+"- Chiffres (au moins {password_numeric} caractère)}other{\n"
+"- Chiffres (au moins {password_numeric} caractères)}}{password_special, "
+"plural,=0{}=1{\n"
+"- Caractères spéciaux (au moins {password_special} caractère)}other{\n"
+"- Caractères spéciaux (au moins {password_special} caractères)}}}}"
+
+#~ msgid ""
+#~ "{password_length, plural,=0{}=1{Password must be {password_length} "
+#~ "character or more.\n"
+#~ "}other{Password must be {password_length} characters or more.\n"
+#~ "}}{password_content, plural,=0{}other{{message}}}"
+#~ msgstr ""
+#~ "{password_length, plural,=0{}=1{Le mot de passe doit comporter "
+#~ "{password_length} caractère ou plus.\n"
+#~ "}other{Le mot de passe doit comporter {password_length} caractères ou "
+#~ "plus.\n"
+#~ "}}{password_content, plural,=0{}other{{message}}}"
+
+#~ msgid "Must contain the following:"
+#~ msgstr "Doit contenir :"
 
 #~ msgid "Extra"
 #~ msgstr "Options supplémentaires"
