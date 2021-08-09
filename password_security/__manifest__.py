@@ -13,7 +13,7 @@
     "Omar Nasr, "
     "Odoo Community Association (OCA)",
     "category": "Base",
-    "depends": ["auth_signup", "auth_password_policy_signup"],
+    "depends": ["auth_signup", "auth_password_policy_signup", "icuformat"],
     "website": "https://github.com/OCA/server-auth",
     "external_dependencies": {"python": ["zxcvbn"]},
     "license": "LGPL-3",

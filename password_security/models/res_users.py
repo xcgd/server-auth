@@ -85,42 +85,55 @@ class ResUsers(models.Model):
     def password_match_message(self):
         self.ensure_one()
         company_id = self.company_id
-        message = []
-        if company_id.password_lower:
-            message.append(
-                "\n* "
-                + "Lowercase letter (At least "
-                + str(company_id.password_lower)
-                + " character)"
-            )
-        if company_id.password_upper:
-            message.append(
-                "\n* "
-                + "Uppercase letter (At least "
-                + str(company_id.password_upper)
-                + " character)"
-            )
-        if company_id.password_numeric:
-            message.append(
-                "\n* "
-                + "Numeric digit (At least "
-                + str(company_id.password_numeric)
-                + " character)"
-            )
-        if company_id.password_special:
-            message.append(
-                "\n* "
-                + "Special character (At least "
-                + str(company_id.password_special)
-                + " character)"
-            )
-        if message:
-            message = [_("Must contain the following:")] + message
-        if company_id.password_length:
-            message = [
-                "Password must be %d characters or more." % company_id.password_length
-            ] + message
-        return "\r".join(message)
+
+        args = {
+            "password_length": company_id.password_length,
+            "password_lower": company_id.password_lower,
+            "password_upper": company_id.password_upper,
+            "password_numeric": company_id.password_numeric,
+            "password_special": company_id.password_special,
+        }
+        args["password_content"] = sum(
+            [value for key, value in args.items() if key != "password_length"]
+        )
+
+        return self.icu_format(
+            _(
+                "{password_length, plural,"
+                "=0{}"
+                "=1{Password must be {password_length} character or more.\n}"
+                "other{Password must be {password_length} characters or more."
+                "\n}}"
+                "{password_content, plural,"
+                "=0{}"
+                "other{Must contain the following:"
+                "{password_lower, plural,"
+                "=0{}"
+                "=1{\n- Lowercase letter (at least {password_lower} "
+                "character)}"
+                "other{\n- Lowercase letter (at least {password_lower} "
+                "characters)}}"
+                "{password_upper, plural,"
+                "=0{}"
+                "=1{\n- Uppercase letter (at least {password_upper} "
+                "character)}"
+                "other{\n- Uppercase letter (at least {password_upper} "
+                "characters)}}"
+                "{password_numeric, plural,"
+                "=0{}"
+                "=1{\n- Numeric digit (at least {password_numeric} "
+                "character)}"
+                "other{\n- Numeric digit (at least {password_numeric} "
+                "characters)}}"
+                "{password_special, plural,"
+                "=0{}"
+                "=1{\n- Special character  (at least {password_special} "
+                "character)}"
+                "other{\n- Special character  (at least "
+                "{password_special} characters)}}}}"
+            ),
+            args,
+        )
 
     def _check_password(self, password):
         self._check_password_rules(password)
