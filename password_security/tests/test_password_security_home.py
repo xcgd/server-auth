@@ -223,7 +223,7 @@ class LoginCase(HttpCase):
             env = self.env(cr)
             user = env["res.users"].search([("login", "=", "admin")])
             user.password_write_date = three_days_ago
-            user.company_id.password_expiration = 1
+            env.company.password_expiration = 1
         response = self.url_open("/web/login", {"login": "admin", "password": "admin"},)
         # Password has expired, I'm redirected to reset it
         all_urls = [
