@@ -55,7 +55,7 @@ class ResUsers(models.Model):
     @api.model
     def get_password_policy(self):
         data = super(ResUsers, self).get_password_policy()
-        company_id = self.env.user.company_id
+        company_id = self.env.company
         data.update(
             {
                 "password_lower": company_id.password_lower,
