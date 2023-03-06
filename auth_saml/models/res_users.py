@@ -159,7 +159,7 @@ class ResUser(models.Model):
                 "UPDATE res_users SET password = NULL WHERE id IN %s",
                 (tuple(blank_password_users.ids),),
             )
-            self.invalidate_cache(["password"], blank_password_users.ids)
+            blank_password_users.invalidate_recordset(fnames=["password"])
         return
 
     def allow_saml_and_password_changed(self):

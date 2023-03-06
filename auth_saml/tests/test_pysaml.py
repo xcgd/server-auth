@@ -12,8 +12,9 @@ from .fake_idp import FakeIDP
 
 @tagged("saml", "post_install", "-at_install")
 class TestPySaml(HttpCase):
-    def setUp(self):
-        super().setUp()
+    @classmethod
+    def setUpClass(cls, chart_template_ref=None):
+        super().setUpClass(chart_template_ref=chart_template_ref)
 
         sp_pem_public = None
         sp_pem_private = None
