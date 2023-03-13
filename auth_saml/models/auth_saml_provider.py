@@ -282,6 +282,11 @@ class AuthSamlProvider(models.Model):
         self.ensure_one()
 
         client = self._get_client_for_provider(base_url)
+
+        #         import pdb
+        #         pdb.set_trace()
+        #         xmlstr = base64.b64decode(token)
+
         response = client.parse_authn_request_response(
             token,
             saml2.entity.BINDING_HTTP_POST,
