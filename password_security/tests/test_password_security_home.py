@@ -30,7 +30,6 @@ class MockPassError(main.PassError):
 
 
 class TestPasswordSecurityHome(TransactionCase):
-
     def setUp(self):
         super(TestPasswordSecurityHome, self).setUp()
         self.PasswordSecurityHome = main.PasswordSecurityHome
@@ -206,8 +205,9 @@ class TestPasswordSecurityHome(TransactionCase):
 
 
 @mock.patch("odoo.http.WebRequest.validate_csrf", return_value=True)
-@mock.patch("odoo.http.redirect_with_hash", return_value="redirected")
 class LoginCase(HttpCase):
+    @mock.patch("odoo.http.redirect_with_hash",
+                return_value="redirected")
     def test_web_login_authenticate(self, redirect_mock, *args):
         """It should allow authenticating by login"""
         response = self.url_open(
@@ -218,18 +218,19 @@ class LoginCase(HttpCase):
         redirect_mock.assert_any_call("/web")
         self.assertEqual(response.text, "redirected")
 
-    def test_web_login_authenticate_fail(self, redirect_mock, *args):
+    def test_web_login_authenticate_fail(self, *args):
         """It should fail auth"""
         response = self.url_open(
             "/web/login",
             {"login": "admin", "password": "noadmin"},
         )
-        redirect_mock.assert_not_called()
         self.assertIn(
             "Wrong login/password",
             response.text,
         )
 
+    @mock.patch("odoo.http.redirect_with_hash",
+                return_value="redirected")
     def test_web_login_expire_pass(self, redirect_mock, *args):
         """It should expire password if necessary"""
         two_days_ago = datetime.now() - timedelta(days=2)
@@ -247,4 +248,20 @@ class LoginCase(HttpCase):
         self.assertTrue(all_urls)
         start = response.url.replace("/login", "/reset_password?")
         self.assertTrue(any(url.startswith(start) for url in all_urls))
+        self.assertEqual(response.text, "redirected")
+
+    @mock.patch("odoo.http.redirect_with_hash", return_value="redirected")
+    def test_web_login_expire_pass_disabled(self, redirect_mock, *args):
+        """ It should allow authentication if password expire is disabled """
+        two_days_ago = datetime.now() - timedelta(days=2)
+        with self.cursor() as cr:
+            env = self.env(cr)
+            env.user.password_write_date = two_days_ago
+            env.user.company_id.password_expiration = 0
+        response = self.url_open(
+            "/web/login",
+            {"login": "admin", "password": "admin"},
+        )
+        # Redirected to /web because it succeeded
+        redirect_mock.assert_any_call("/web")
         self.assertEqual(response.text, "redirected")

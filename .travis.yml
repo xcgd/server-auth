@@ -6,12 +6,14 @@ python:
   - "3.5"
 
 addons:
-  postgresql: "9.3" # minimal postgresql version for the base_import_security_group module
+  postgresql: "9.6" # minimal postgresql version for the base_import_security_group module
                     # more info: https://github.com/OCA/maintainer-quality-tools/issues/432
   apt:
     packages:
       - expect-dev  # provides unbuffer utility
       - python-lxml # because pip installation is slow
+      - libmysqlclient-dev # To install mysqlclient and import MySQLdb
+      - python3-lasso # Used in auth_saml
 
 env:
   global:
