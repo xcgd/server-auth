@@ -10,6 +10,7 @@ import werkzeug.utils
 import odoo
 from odoo import SUPERUSER_ID, _, api, http, registry as registry_get
 from odoo.http import request
+from odoo.tools.misc import clean_context
 
 from odoo.addons.web.controllers.main import (
     Home,
@@ -211,7 +212,7 @@ class AuthSAMLController(http.Controller):
         state = json.loads(kw["RelayState"])
         provider = state["p"]
         dbname = state["d"]
-        context = state.get("c", {})
+        context = clean_context(state.get('c', {}))
         registry = registry_get(dbname)
         with registry.cursor() as cr:
             try:

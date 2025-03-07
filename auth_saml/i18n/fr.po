@@ -46,6 +46,11 @@ msgid "Autoredirect"
 msgstr "Autoredirection"
 
 #. module: auth_saml
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_provider_autoredirect
+msgid "Autoredirect"
+msgstr "Autoredirection"
+
+#. module: auth_saml
 #: model:ir.model.fields,field_description:auth_saml.field_auth_saml_provider_body
 msgid "Body"
 msgstr "Corps"
