@@ -111,11 +111,6 @@ class SAMLLogin(Home):
             if result:
                 return result
 
-        if request.httprequest.method == 'GET':
-            result = self._saml_autoredirect()
-            if result:
-                return result
-
         providers = self.list_providers()
 
         response = super(SAMLLogin, self).web_login(*args, **kw)
