@@ -7,6 +7,7 @@ import json
 import logging
 
 import werkzeug.utils
+from saml2.validate import ResponseLifetimeExceed
 from werkzeug.exceptions import BadRequest
 from werkzeug.urls import url_quote_plus
 
@@ -52,6 +53,16 @@ def fragment_to_query_string(func):
         return func(self, **kw)
 
     return wrapper
+
+
+def _error_message(error: str) -> str | None:
+    if error == "access-denied":
+        return _("Access Denied")
+    if error == "response-lifetime-exceed":
+        return _("Response Lifetime Exceeded")
+    if error == "expired":
+        return _("You do not have access to this database. Please contact support.")
+    return None
 
 
 # ----------------------------------------------------------
@@ -131,19 +142,7 @@ class SAMLLogin(Home):
 
         response = super().web_login(*args, **kw)
         if response.is_qweb:
-            error = request.params.get("saml_error")
-            if error == "no-signup":
-                error = _("Sign up is not allowed on this database.")
-            elif error == "access-denied":
-                error = _("Access Denied")
-            elif error == "expired":
-                error = _(
-                    "You do not have access to this database. Please contact"
-                    " support."
-                )
-            else:
-                error = None
-
+            error = _error_message(request.params.get("saml_error"))
             response.qcontext["saml_providers"] = providers
 
             if error:
@@ -172,6 +171,17 @@ class AuthSAMLController(http.Controller):
             "r": url_quote_plus(redirect),
         }
         return state
+
+    def _get_saml_error_url(self, saml_error: str) -> str:
+        """Return the URL of the SAML error page.
+        This module provides a configuration option to use another page.
+        """
+        base = (
+            request.env["ir.config_parameter"]
+            .sudo()
+            .get_param("auth_saml.saml_error_page", "/web/login")
+        )
+        return f"{base}?saml_error={saml_error}"
 
     @http.route("/auth_saml/get_auth_request", type="http", auth="none")
     def get_auth_request(self, pid):
@@ -251,15 +261,17 @@ class AuthSAMLController(http.Controller):
             # user could be on a temporary session
             _logger.info("SAML2: access denied")
 
-            url = "/web/login?saml_error=expired"
-            redirect = werkzeug.utils.redirect(url, 303)
+            redirect = werkzeug.utils.redirect(self._get_saml_error_url("expired"), 303)
             redirect.autocorrect_location_header = False
             return redirect
+        except ResponseLifetimeExceed as e:
+            _logger.debug("Response Lifetime Exceed - %s", str(e))
+            url = self._get_saml_error_url("response-lifetime-exceed")
 
         except Exception as e:
             # signup error
             _logger.exception("SAML2: failure - %s", str(e))
-            url = "/web/login?saml_error=access-denied"
+            url = self._get_saml_error_url("access-denied")
 
         redirect = request.redirect(url, 303)
         redirect.autocorrect_location_header = False
@@ -291,3 +303,15 @@ class AuthSAMLController(http.Controller):
                 ),
                 [("Content-Type", "text/xml")],
             )
+
+    @http.route("/web/login/saml_error", type="http", auth="none", csrf=False)
+    def saml_error(self, redirect=None, **kw):
+        saml_error = request.params.get("saml_error")
+        error = _error_message(saml_error)
+        if not error:
+            return request.redirect(redirect or "/")
+        response = request.render("auth_saml.login_error", {"error": error})
+        response.headers["Cache-Control"] = "no-cache"
+        response.headers["X-Frame-Options"] = "SAMEORIGIN"
+        response.headers["Content-Security-Policy"] = "frame-ancestors 'self'"
+        return response
