@@ -6,7 +6,11 @@
         name="Auth SAML Providers"
     >
         <xpath expr="//t[@t-set='auth_btns']" position="after">
-            <t t-set="auth_btns" t-value="saml_providers + auth_btns" />
+            <!-- saml_providers is only set in the qcontext of /web/login.
+                 web.login_oauth is also rendered by /web/signup and
+                 /web/reset_password, where the variable is undefined, so
+                 default it to an empty list to avoid a TypeError there. -->
+            <t t-set="auth_btns" t-value="(saml_providers or []) + auth_btns" />
         </xpath>
     </template>
 
