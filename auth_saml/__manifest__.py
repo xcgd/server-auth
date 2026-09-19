@@ -12,7 +12,7 @@
     "license": "AGPL-3",
     "depends": ["base_setup", "web"],
     "external_dependencies": {
-        "python": ["pysaml2", "responses"],
+        "python": ["pysaml2", "responses", "urllib3>=2.0.7"],
         "bin": ["xmlsec1"],
         # special definition used by OCA to install packages
         "deb": ["xmlsec1"],
