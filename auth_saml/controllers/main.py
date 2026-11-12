@@ -113,7 +113,7 @@ class SAMLLogin(Home):
             return request.redirect(request.params.get("redirect"))
 
         if request.httprequest.method == "GET":
-            result = self._saml_autoredirect()
+            result = self._saml_autoredirect(None)
             if result:
                 return result
 
